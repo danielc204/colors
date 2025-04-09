@@ -1,0 +1,131 @@
+
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Picker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdfcf8;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    .tabs {
+      display: flex;
+      background-color: #e0ddd6;
+      justify-content: center;
+    }
+    .tab-button {
+      flex: 1;
+      padding: 12px;
+      background-color: #e0ddd6;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s;
+    }
+    .tab-button.active {
+      background-color: #d6cfc4;
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none;
+      padding: 25px;
+      text-align: center;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .color-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .color-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: transform 0.2s, border 0.2s;
+    }
+    .color-circle:hover {
+      transform: scale(1.1);
+      border: 3px solid #999;
+    }
+  </style>
+</head>
+<body>
+
+<div class="tabs">
+  <button class="tab-button active" onclick="showTab(0)">עדין</button>
+  <button class="tab-button" onclick="showTab(1)">בסיסי</button>
+  <button class="tab-button" onclick="showTab(2)">פופולרי</button>
+</div>
+
+<div class="tab-content active">
+  <div class="color-grid">
+    <div class="color-circle" style="background-color: #F8EDEB;" onclick="selectColor('#F8EDEB')"></div>
+    <div class="color-circle" style="background-color: #E2ECE9;" onclick="selectColor('#E2ECE9')"></div>
+    <div class="color-circle" style="background-color: #F7F6F2;" onclick="selectColor('#F7F6F2')"></div>
+    <div class="color-circle" style="background-color: #DAD2BC;" onclick="selectColor('#DAD2BC')"></div>
+    <div class="color-circle" style="background-color: #CCD5AE;" onclick="selectColor('#CCD5AE')"></div>
+    <div class="color-circle" style="background-color: #F5EBE0;" onclick="selectColor('#F5EBE0')"></div>
+    <div class="color-circle" style="background-color: #E4D6A7;" onclick="selectColor('#E4D6A7')"></div>
+    <div class="color-circle" style="background-color: #C8C6A7;" onclick="selectColor('#C8C6A7')"></div>
+    <div class="color-circle" style="background-color: #EADBC8;" onclick="selectColor('#EADBC8')"></div>
+    <div class="color-circle" style="background-color: #F2EAD3;" onclick="selectColor('#F2EAD3')"></div>
+  </div>
+</div>
+
+<div class="tab-content">
+  <div class="color-grid">
+    <div class="color-circle" style="background-color: red;" onclick="selectColor('red')"></div>
+    <div class="color-circle" style="background-color: blue;" onclick="selectColor('blue')"></div>
+    <div class="color-circle" style="background-color: green;" onclick="selectColor('green')"></div>
+    <div class="color-circle" style="background-color: yellow;" onclick="selectColor('yellow')"></div>
+    <div class="color-circle" style="background-color: orange;" onclick="selectColor('orange')"></div>
+    <div class="color-circle" style="background-color: purple;" onclick="selectColor('purple')"></div>
+    <div class="color-circle" style="background-color: pink;" onclick="selectColor('pink')"></div>
+    <div class="color-circle" style="background-color: brown;" onclick="selectColor('brown')"></div>
+    <div class="color-circle" style="background-color: black;" onclick="selectColor('black')"></div>
+    <div class="color-circle" style="background-color: white;" onclick="selectColor('white')"></div>
+  </div>
+</div>
+
+<div class="tab-content">
+  <div class="color-grid">
+    <div class="color-circle" style="background-color: #7F5AF0;" onclick="selectColor('#7F5AF0')"></div>
+    <div class="color-circle" style="background-color: #F25F4C;" onclick="selectColor('#F25F4C')"></div>
+    <div class="color-circle" style="background-color: #2CB67D;" onclick="selectColor('#2CB67D')"></div>
+    <div class="color-circle" style="background-color: #FFD803;" onclick="selectColor('#FFD803')"></div>
+    <div class="color-circle" style="background-color: #E53170;" onclick="selectColor('#E53170')"></div>
+    <div class="color-circle" style="background-color: #00C2D1;" onclick="selectColor('#00C2D1')"></div>
+    <div class="color-circle" style="background-color: #FF90E8;" onclick="selectColor('#FF90E8')"></div>
+    <div class="color-circle" style="background-color: #FF7A00;" onclick="selectColor('#FF7A00')"></div>
+    <div class="color-circle" style="background-color: #B8B8FF;" onclick="selectColor('#B8B8FF')"></div>
+    <div class="color-circle" style="background-color: #F9BC60;" onclick="selectColor('#F9BC60')"></div>
+  </div>
+</div>
+
+<script>
+  function showTab(index) {
+    const tabs = document.querySelectorAll(".tab-content");
+    const buttons = document.querySelectorAll(".tab-button");
+
+    tabs.forEach((tab, i) => {
+      tab.classList.toggle("active", i === index);
+      buttons[i].classList.toggle("active", i === index);
+    });
+  }
+
+  function selectColor(color) {
+    alert("בחרת את הצבע: " + color);
+    // כאן תוכל לשלב את הצבע שנבחר בטאנקאבל דרך Web API או משתנה גלובלי
+  }
+</script>
+
+</body>
+</html>
