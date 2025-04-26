@@ -3,6 +3,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Color Picker</title>
+
+  <!-- הוספת הספריה של טאנקאבל ווב וויו -->
+  <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
+
   <style>
     html, body {
       margin: 0;
@@ -69,12 +73,11 @@
       }
     }
   </style>
-  <!-- כאן מוסיפים את הסקריפט הרשמי של טאנקאבל -->
-  <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
 </head>
 <body>
 
 <div class="popup-container">
+  <!-- כל קבוצות הצבעים, בלי שינוי -->
   <div class="color-group">
     <div class="group-title">בסיסי</div>
     <div class="color-grid">
@@ -130,15 +133,18 @@
       <div class="color-circle" style="background-color: #f26722;" onclick="selectColor('#f26722')"></div>
     </div>
   </div>
+
 </div>
 
 <script>
   function selectColor(color) {
     console.log("הצבע שנבחר הוא: " + color);
-    if (typeof ThunkableWebviewerExtension !== "undefined") {
+    if (typeof ThunkableWebviewerExtension !== 'undefined') {
       ThunkableWebviewerExtension.postMessage(color);
+    } else if (typeof window.ReactNativeWebView !== 'undefined') {
+      window.ReactNativeWebView.postMessage(color);
     } else {
-      console.warn("ThunkableWebviewerExtension לא נטען, הצבע שנבחר:", color);
+      console.warn('No communication bridge found.');
     }
   }
 </script>
