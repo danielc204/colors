@@ -1,0 +1,143 @@
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Picker</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fdfcf8;
+      direction: rtl;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .popup-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 8px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      height: 100%;
+      align-items: flex-start;
+    }
+
+    .color-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      width: 45%;
+      max-width: 180px;
+    }
+
+    .group-title {
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 2px;
+      text-align: center;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .color-circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.2s, border 0.2s;
+    }
+
+    .color-circle:hover {
+      transform: scale(1.1);
+      border: 2px solid #999;
+    }
+
+    @media (max-width: 400px) {
+      .color-group {
+        width: 100%;
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="popup-container">
+  <div class="color-group">
+    <div class="group-title">בסיסי</div>
+    <div class="color-grid">
+      <div class="color-circle" style="background-color: red;" onclick="selectColor('red')"></div>
+      <div class="color-circle" style="background-color: blue;" onclick="selectColor('blue')"></div>
+      <div class="color-circle" style="background-color: green;" onclick="selectColor('green')"></div>
+      <div class="color-circle" style="background-color: yellow;" onclick="selectColor('yellow')"></div>
+      <div class="color-circle" style="background-color: orange;" onclick="selectColor('orange')"></div>
+      <div class="color-circle" style="background-color: purple;" onclick="selectColor('purple')"></div>
+      <div class="color-circle" style="background-color: pink;" onclick="selectColor('pink')"></div>
+      <div class="color-circle" style="background-color: brown;" onclick="selectColor('brown')"></div>
+      <div class="color-circle" style="background-color: black;" onclick="selectColor('black')"></div>
+    </div>
+  </div>
+
+  <div class="color-group">
+    <div class="group-title">עדין</div>
+    <div class="color-grid">
+      <div class="color-circle" style="background-color: #F8EDEB;" onclick="selectColor('#F8EDEB')"></div>
+      <div class="color-circle" style="background-color: #E2ECE9;" onclick="selectColor('#E2ECE9')"></div>
+      <div class="color-circle" style="background-color: #F7F6F2;" onclick="selectColor('#F7F6F2')"></div>
+      <div class="color-circle" style="background-color: #DAD2BC;" onclick="selectColor('#DAD2BC')"></div>
+      <div class="color-circle" style="background-color: #CCD5AE;" onclick="selectColor('#CCD5AE')"></div>
+      <div class="color-circle" style="background-color: #F5EBE0;" onclick="selectColor('#F5EBE0')"></div>
+      <div class="color-circle" style="background-color: #E4D6A7;" onclick="selectColor('#E4D6A7')"></div>
+      <div class="color-circle" style="background-color: #C8C6A7;" onclick="selectColor('#C8C6A7')"></div>
+      <div class="color-circle" style="background-color: #EADBC8;" onclick="selectColor('#EADBC8')"></div>
+    </div>
+  </div>
+
+  <div class="color-group">
+    <div class="group-title">פופולרי</div>
+    <div class="color-grid">
+      <div class="color-circle" style="background-color: #7F5AF0;" onclick="selectColor('#7F5AF0')"></div>
+      <div class="color-circle" style="background-color: #F25F4C;" onclick="selectColor('#F25F4C')"></div>
+      <div class="color-circle" style="background-color: #2CB67D;" onclick="selectColor('#2CB67D')"></div>
+      <div class="color-circle" style="background-color: #FFD803;" onclick="selectColor('#FFD803')"></div>
+      <div class="color-circle" style="background-color: #E53170;" onclick="selectColor('#E53170')"></div>
+      <div class="color-circle" style="background-color: #00C2D1;" onclick="selectColor('#00C2D1')"></div>
+      <div class="color-circle" style="background-color: #FF90E8;" onclick="selectColor('#FF90E8')"></div>
+      <div class="color-circle" style="background-color: #FF7A00;" onclick="selectColor('#FF7A00')"></div>
+      <div class="color-circle" style="background-color: #B8B8FF;" onclick="selectColor('#B8B8FF')"></div>
+    </div>
+  </div>
+
+  <div class="color-group">
+    <div class="group-title">המלצת קווים ומחשבות</div>
+    <div class="color-grid">
+      <div class="color-circle" style="background-color: #25408f;" onclick="selectColor('#25408f')"></div>
+      <div class="color-circle" style="background-color: #23b0e6;" onclick="selectColor('#23b0e6')"></div>
+      <div class="color-circle" style="background-color: #92cd8d;" onclick="selectColor('#92cd8d')"></div>
+      <div class="color-circle" style="background-color: #e03d8e;" onclick="selectColor('#e03d8e')"></div>
+      <div class="color-circle" style="background-color: #f26722;" onclick="selectColor('#f26722')"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function selectColor(color) {
+    console.log("הצבע שנבחר הוא: " + color);
+    if (window.ReactNativeWebView && window.ReactNativeWebView.postMessage) {
+      window.ReactNativeWebView.postMessage(color);
+    }
+  }
+</script>
+
+</body>
+</html>
