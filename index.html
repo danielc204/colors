@@ -69,6 +69,8 @@
       }
     }
   </style>
+  <!-- כאן מוסיפים את הסקריפט הרשמי של טאנקאבל -->
+  <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -133,8 +135,10 @@
 <script>
   function selectColor(color) {
     console.log("הצבע שנבחר הוא: " + color);
-    if (window.ReactNativeWebView && window.ReactNativeWebView.postMessage) {
-      window.ReactNativeWebView.postMessage(color);
+    if (typeof ThunkableWebviewerExtension !== "undefined") {
+      ThunkableWebviewerExtension.postMessage(color);
+    } else {
+      console.warn("ThunkableWebviewerExtension לא נטען, הצבע שנבחר:", color);
     }
   }
 </script>
